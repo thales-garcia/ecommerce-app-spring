@@ -1,5 +1,7 @@
 package com.project.ecommerce.models;
 
+import com.project.ecommerce.controllers.dto.ProductDto;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +18,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Product> products;
 
-    public User(Long id, String email, String name, String password) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -42,6 +44,14 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -53,6 +63,7 @@ public class User implements Serializable {
     public List<Product> getProducts() {
         return products;
     }
+
 
     @Override
     public boolean equals(Object o) {
