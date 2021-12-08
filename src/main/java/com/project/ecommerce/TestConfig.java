@@ -1,6 +1,7 @@
 package com.project.ecommerce;
 
 import com.project.ecommerce.models.Category;
+import com.project.ecommerce.models.Comments;
 import com.project.ecommerce.models.Product;
 import com.project.ecommerce.models.User;
 import com.project.ecommerce.models.enums.Color;

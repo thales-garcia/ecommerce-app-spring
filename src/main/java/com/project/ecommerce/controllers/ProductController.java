@@ -68,7 +68,7 @@ public class ProductController {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()){
             productRepository.deleteById(id);
-            ResponseEntity.ok().build();
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
 
