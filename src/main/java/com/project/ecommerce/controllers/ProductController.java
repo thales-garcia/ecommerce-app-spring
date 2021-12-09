@@ -3,7 +3,9 @@ package com.project.ecommerce.controllers;
 import com.project.ecommerce.controllers.dto.ProductDto;
 import com.project.ecommerce.controllers.form.ProductForm;
 import com.project.ecommerce.controllers.form.ProductFormPut;
+import com.project.ecommerce.models.Comments;
 import com.project.ecommerce.models.Product;
+import com.project.ecommerce.repositories.CommentsRepository;
 import com.project.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CommentsRepository commentsRepository;
 
 
     @GetMapping
@@ -72,6 +77,15 @@ public class ProductController {
         }
         return ResponseEntity.notFound().build();
 
+    }
+
+    @GetMapping(value="/{id}/comments")
+    public ResponseEntity<List<Comments>> findCommmentById(@PathVariable Long id){
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()){
+            return ResponseEntity.ok(product.get().getComments());
+        }
+        return ResponseEntity.notFound().build();
     }
 }
 

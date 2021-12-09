@@ -1,7 +1,6 @@
 package com.project.ecommerce.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.ecommerce.controllers.dto.UserDto;
 import com.project.ecommerce.models.enums.Color;
 import com.project.ecommerce.models.enums.StatusProduct;
 
@@ -37,9 +36,9 @@ public class Product implements Serializable {
     @OneToMany(mappedBy="product")
     private List<Comments> comments = new ArrayList<>();
 
-    public Product(String name, Double price) {
+    public Product(String name, Double totalPrice) {
         this.name = name;
-        this.price = price;
+        this.totalPrice = totalPrice;
     }
 
     public Product(Long id, String name, Double price, LocalDateTime date, Integer quantity, Double totalPrice, Double grade, Color color, StatusProduct status, Category category, User user) {

@@ -7,6 +7,7 @@ import com.project.ecommerce.models.User;
 import com.project.ecommerce.models.enums.Color;
 import com.project.ecommerce.models.enums.StatusProduct;
 import com.project.ecommerce.repositories.CategoryRepository;
+import com.project.ecommerce.repositories.CommentsRepository;
 import com.project.ecommerce.repositories.ProductRepository;
 import com.project.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     public CategoryRepository categoryRepository;
 
+    @Autowired
+    public CommentsRepository commentsRepositories;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -48,6 +52,17 @@ public class TestConfig implements CommandLineRunner {
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
         userRepository.saveAll(Arrays.asList(u1,u2));
         categoryRepository.saveAll(Arrays.asList(c1,c2,c3));
+
+        Comments com1 = new Comments(null, "Angry", "That's too expensive", 1.5,p1);
+        Comments com2 = new Comments(null, "Happy", "That's great", 4.5,p2);
+        Comments com3 = new Comments(null, "Confuse", "That's too confused", 3d,p3);
+        Comments com4 = new Comments(null, "Boring", "This is very boring", 1d,p1);
+        Comments com5 = new Comments(null, "Awesome", "That's unbelievable", 5d,p4);
+
+        commentsRepositories.saveAll(Arrays.asList(com1, com2, com3, com4, com5));
+
+
+
 
     }
 }

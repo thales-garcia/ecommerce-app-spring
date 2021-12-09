@@ -52,7 +52,7 @@ public class UserController {
 
     }
 
-    @PutMapping(value="{id}")
+    @PutMapping(value="/{id}")
     @Transactional
     public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody @Valid UserFormPut formPut){
         Optional<User> user = userRepository.findById(id);

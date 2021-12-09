@@ -3,21 +3,14 @@ package com.project.ecommerce.controllers.dto;
 import com.project.ecommerce.models.Product;
 import com.project.ecommerce.models.User;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne
     private List<Product> products = new ArrayList<>();
 
     public UserDto(User user){

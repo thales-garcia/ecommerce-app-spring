@@ -1,5 +1,7 @@
 package com.project.ecommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -9,20 +11,28 @@ public class Comments implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Title;
+    private String title;
     private String text;
-    private Integer grade;
+    private Double grade;
     @ManyToOne
+    @JsonIgnore
     private Product product;
 
-    public Comments(Long id, String title, String text, Integer grade) {
+    public Comments(Long id, String title, String text, Double grade, Product product) {
         this.id = id;
-        Title = title;
+        this.title = title;
         this.text = text;
         this.grade = grade;
+        this.product = product;
     }
 
     public Comments() {
+    }
+
+    public Comments(String title, String text) {
+    }
+
+    public Comments(String title, String text, Double grade) {
     }
 
     public Long getId() {
@@ -34,11 +44,11 @@ public class Comments implements Serializable {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getText() {
@@ -49,12 +59,20 @@ public class Comments implements Serializable {
         this.text = text;
     }
 
-    public Integer getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
